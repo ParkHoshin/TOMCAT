@@ -1,0 +1,44 @@
+1.server.xml 구성 요소
+<Connector>, , <Service>, <Engine>, <Host>
+<Server>
+
+<Server port="8005" shutdown="SHUTDOWN">  ---------------------------->최상위 element로써,suutdown 요청 처리를 위한 address와 port속성을 가지고있다.
+             "기본값"                                                         prot속성을 -1로 설정하면 shutdown포트 기능을 사용하지 않는다
+  <Listener> : server의 하위 컴포넌트 , 특정 이벤트들을 리스닝하고 이벤트 발생시 응답한다.           
+  <Listener className="org.apache.catalina.startup.VersionLoggerListener"/>
+  <Listener SSLEngine="on" className="org.apache.catalina.core.AprLifecycleListener"/>
+  <Listener className="org.apache.catalina.core.JreMemoryLeakPreventionListener"/>
+  <Listener className="org.apache.catalina.mbeans.GlobalResourcesLifecycleListener"/>
+  <Listener className="org.apache.catalina.core.ThreadLocalLeakPreventionListener"/>
+  
+   <GlobalNamingResources> : server의 하위 컴포넌트,<Resource>등을 통해서 전역 리소스를 설정한다.
+    <Resource auth="Container" description="User database that can be updated and saved" factory="org.apache.catalina.users.MemoryUserDatabaseFactory" name="UserDatabase" pathname="conf/tomcat-users.xml" type="org.apache.catalina.UserDatabase"/>
+  </GlobalNamingResources>
+  
+   <Service name="Catalina"> : server의 하위 컴포넌트, 1개이상의 connector 와 Engine을 포함한다.기본설정 이름은 Catalina이다.
+     <Connector connectionTimeout="20000" port="8080" protocol="HTTP/1.1" redirectPort="8443"/> : 톰캣은 기본적으로 HTTP(8080), HTTPS(8443), AJP(8009) 커넥터를 제공한다.
+      *connectionTimeout = 타임아웃 밀리세컨드.기본값은 60000(60초)이며 -1일 경우 타임아웃의 제한이 없다.
+      *redirectPort      = SSL 요청이 들어올 경우 리다이렉트될 포트번호(SSL : 서버와 브라우저 간 보안을 위해 만든 프로토콜)
+   
+   <Engine defaultHost="localhost" name="Catalina">: 커넥터로 수신한 클라이언트의 요청을 처리하고 응답한다.
+      
+   <Realm className="org.apache.catalina.realm.LockOutRealm"> : 누군가가 불법적으로 접근을 시도할 경우 실패 Count 를 체크하여 접근불가 상태로 만드는것.(현재 적용 X)
+        <Realm className="org.apache.catalina.realm.UserDatabaseRealm" resourceName="UserDatabase"/>
+      </Realm>
+
+      <Host appBase="webapps" autoDeploy="true" name="localhost" unpackWARs="true"> : VirtualHost를 의미하며, name 속성으로 설정된 호스트명으로 웹 애플리케이션을 제공한다.
+                                                                                      VritualHost:  이름 기반 가상 호스트. IP Address는 부족한데 Host요구는 많다.
+      appBase:  웹 애플리케이션이 존재하는 경로. CATALINA_BASE의 webapps를 기본으로 한다.
+      autoDeploy : class 파일,JSP,XML 등이 갱신되었을때 자동으로 배포한다.
+      unpackWARs : 기동시 war 파일을 압축해제한다.
+      
+   <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
+    요청과 응답 사이에 pre-processing을 가능하게 하고 ,<Host>에 추가되면 모든 웹 애플리케이션에 Valve가 적용된다.
+    pre-processing : 컴파일의 일부분으로,전처리(Pre-processing)주석 제거,매크로 인라인화,include 파일 인라인화 한다.
+    
+   <Context docBase="Smart_QuadMax_HQ_CSS" path="/" reloadable="true" source="org.eclipse.jst.jee.server:Smart_QuadMax_HQ_CSS"/></Host>
+   
+
+
+
+
