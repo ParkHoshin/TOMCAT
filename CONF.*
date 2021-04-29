@@ -1,0 +1,43 @@
+```
+conf 디렉토리 하위에는 7개의 설정파일이 존재한다. 
+구동 순서 : 
+
+1. server.xml
+- 톰캣 설정에서 가장 중요한 파일이다. 톰캣의 Service, Connector(포트 설정 등), Host 정보와 같은 중요한 정보들을 설정한다.
+ 
+ 
+2. catalina.policy
+- 보안 정책 권한 설정 파일이다. JVM에 의해서 웹 애플리케이션에 강제적으로 보안 정책 권한을 설정한다.
+
+
+3. catalina.properties
+- 서버를 시작할 때 검색하는 서버, 공유로더, jar 등의 공유정보를 포함한다.
+
+
+4. tomcat-users.xml
+- 사용자 권한과 인증 정보를 설정한다.
+- 톰캣 관리자를 사용할 때 활용되는 정보이며, 기본적으로 주석처리가 되어 있다. 주석해제 및 설정을 하여야 톰캣 관리자가 활성화 된다.
+
+
+5. logging.properties
+- 톰캣 인스턴스의 로깅 설정 파일이다.
+- 톰캣에서는 java.util.logging을 구현한 줄리(tomcat-juli.jar) 라이브러리를 로깅 서비스로 활용한다.
+- 기본적으로 4가지 로그 파일을 설정한다.
+
+
+6. web.xml
+- 톰캣 인스턴스에서 사용하는 기본 설정파일이다. 웹 애플리케이션에서 web.xml이 설정되어 있다면 웹 애플리케이션 설정이 우선한다.
+
+
+7. context.xml
+- 세션, 쿠키 저장경로 등을 지정하는 설정 파일이다.
+
+8.jaspic-providers.xml(Java Authentication Service Provider Interface for Containers 의 준말)
+-사용할 사용자 인증 제공 방법에 대해 정의한 파일 (default는 미정의)
+```
+
+
+
+
+
+
