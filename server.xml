@@ -38,6 +38,9 @@
     
    <Context docBase="Smart_QuadMax_HQ_CSS" path="/" reloadable="true" source="org.eclipse.jst.jee.server:Smart_QuadMax_HQ_CSS"/></Host>
    
+   
+   http://localhost/index.jsp를 요청하면 ,  docBase인Smart_QuadMax_HQ_CSS 가 추가된 http://localhost/Smart_QuadMax_HQ_CSS/index.jsp을 출력한다. 
+   reloadable : 소스가 수정이 되면 자동으로 리로드 되기해주는 설정.(본인이 서버를 재시작 할 필요가 없다.)
 
 
 
