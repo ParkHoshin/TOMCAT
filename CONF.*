@@ -12,7 +12,13 @@ conf 디렉토리 하위에는 7개의 설정파일이 존재한다.
 
 3. catalina.properties
 - 서버를 시작할 때 검색하는 서버, 공유로더, jar 등의 공유정보를 포함한다.
+ 
+ CATALINA_BASE : 톰캣 구동시 띄워지게 되는 웹서비스 인스턴스의 베이스 디렉토리(conf, logs, temp, webapps, work 디렉토리를 포함하는 홈 디렉토리를 의미한다.)
+ CATALINA_HOME : 톰캣 설치 홈 디렉토리
 
+
+
+출처: https://pshcode.tistory.com/105 [박성훈의 웹개발]
 
 4. tomcat-users.xml
 - 사용자 권한과 인증 정보를 설정한다.
