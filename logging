@@ -33,7 +33,13 @@ handlers
        org.apache.catalina.core.ContainerBase.[Catalina].[localhost].level = INFO
        org.apache.catalina.core.ContainerBase.[Catalina].[localhost].handlers = 2localhost.org.apache.juli.AsyncFileHandler
 
+catalina.policy - 보안 정책 권한 설정 파일이다.JVM에 의해서 웹 어플리케이션에 강제적으로 보안 정책 권한을 설정한다.
+catalina.policy 파일 안에 tomcat-juli.jar 라이브러리를 사용설정해주고,허가해줄 파일 의 경로와 읽기 권한을 준다.
+그렇게 추가가 되어야 logging.properties가 작동이 된다.
 
+grant codeBase "file:${catalina.home}/bin/tomcat-juli.jar" {
+          permission java.io.FilePermission
+         "${catalina.base}${file.separator}conf${file.separator}logging.properties", "read";
 
 
 
