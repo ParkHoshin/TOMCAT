@@ -1,0 +1,25 @@
+JDK에서 기본으로 제공하는 Logging 클래스로  java.util.logging 추상 클래스를 상속받아 구현한 클래스를 줄여서 JULI 라고 한다.
+다만, 운영시에는 효율을 위해 최소한의 로그를 남기는것이 좋고, 개발시에는 최대한의 많은 로그를 남기는것이 디버깅에 효과적이다.
+
+
+handlers 
+ - FileHandler      : 날짜별로 롤링되는 특정파일에 출력하는 핸들러.
+ - AsyncFileHandler : FileHandler로그 항목의 대기열을 사용하여 구현입니다
+ - ConsoleHandler   : 기본출력 (catalina.out)으로 출력하는 핸들러
+ 예시)
+   handlers = 1catalina.org.apache.juli.AsyncFileHandler, 2localhost.org.apache.juli.AsyncFileHandler, 
+              3manager.org.apache.juli.AsyncFileHandler, 4host-manager.org.apache.juli.AsyncFileHandler, java.util.logging.ConsoleHandler
+ 
+ level 은 다음과 같이 ALL, FINEST, FINER, FINE, CONFIG, INFO, WARNING, SEVERE를 지원하며 오른쪽으로 갈수록 로그량이 적다.
+ 
+ 예시)
+    1catalina.org.apache.juli.AsyncFileHandler.level = FINE                           
+    1catalina.org.apache.juli.AsyncFileHandler.directory = ${catalina.base}/logs     경로 :톰캣 구동시 띄워지게 되는 웹서비스 인스턴스의 베이스 디렉토리
+    1catalina.org.apache.juli.AsyncFileHandler.prefix = catalina.
+    1catalina.org.apache.juli.AsyncFileHandler.maxDays = 90
+    1catalina.org.apache.juli.AsyncFileHandler.encoding = UTF-8
+
+
+
+
+
